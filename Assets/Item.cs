@@ -12,7 +12,7 @@ using static UnityEditor.Progress;
 public class Item : MonoBehaviour
 {
     public int itemID;
-    [Unity.Collections.ReadOnly] public string itemName;
+    [Unity.Collections.ReadOnly] public static string itemName;
     public string itemDescription;
     [NonSerialized] public int itemValue;
 
