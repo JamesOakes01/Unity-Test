@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -95,6 +96,14 @@ public class BasicMovement : MonoBehaviour
     private void Update()
     {
         //Debug.Log(isLookingAtObj());
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (isLookingAtObj())
+            {
+                int itemID = lookingAt.GetComponent<Item>().itemID;
+                Interaction(itemID);
+            }
+        }
     }
 
     private void SetLookingAtUI(GameObject lookingAt)
@@ -112,6 +121,10 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
+    public GameObject GetLookingAt()
+    {
+        return lookingAt;
+    }
     public bool isLookingAtObj()
     {
         if (lookingAt == null)
@@ -122,5 +135,12 @@ public class BasicMovement : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public void Interaction(int itemID)
+    {
+        string scriptName = "item_" + itemID.ToString();
+        System.Type type = System.Type.GetType(scriptName);
+        this.gameObject.AddComponent(type);
     }
 }
