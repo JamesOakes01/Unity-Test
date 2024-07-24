@@ -11,8 +11,11 @@ public class Item : MonoBehaviour
     public string itemName;
     public string itemDescription;
     [NonSerialized] public int itemValue;
+    public bool showInWorldSpace = true;
+    private bool spawnedUI;
+    private GameObject thisworldNameUI;
 
-    public GameObject ItemNameUIPrefab;
+    //public GameObject ItemNameUIPrefab;
 
     private void Start()
     {
@@ -64,11 +67,20 @@ public class Item : MonoBehaviour
 
     public void ShowItemNameInWorld()
     {
-        Vector3 pos;
-        pos = transform.position;
-        pos.y += 1;
-        GameObject thisworldNameUI = Instantiate(ItemNameUIPrefab, pos, Quaternion.identity);
-        thisworldNameUI.transform.GetChild(0).GetComponent<TMP_Text>().text = itemName;
+        if (thisworldNameUI == null)
+        {
+            spawnedUI = false;
+        }
+
+        if (showInWorldSpace && !spawnedUI)
+        {
+            Vector3 pos;
+            pos = transform.position;
+            pos.y += 0.5f;
+            thisworldNameUI = Instantiate((GameObject)Resources.Load("Prefabs/ItemNameCanvas"), pos, Quaternion.identity);
+            thisworldNameUI.transform.GetChild(0).GetComponent<TMP_Text>().text = itemName;
+            spawnedUI = true;
+        }
     }
 }
 

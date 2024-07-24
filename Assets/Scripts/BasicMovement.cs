@@ -87,8 +87,14 @@ public class BasicMovement : MonoBehaviour
         }
         else
         {
+            lookingAt = null;
             SetLookingAtUI(null);
         }
+    }
+
+    private void Update()
+    {
+        //Debug.Log(isLookingAtObj());
     }
 
     private void SetLookingAtUI(GameObject lookingAt)
@@ -103,6 +109,18 @@ public class BasicMovement : MonoBehaviour
             lookingAt.GetComponent<Item>().ShowItemNameInWorld();
             //Debug.Log(itemDes);
             text.text = itemDes;
+        }
+    }
+
+    public bool isLookingAtObj()
+    {
+        if (lookingAt == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
         }
     }
 }

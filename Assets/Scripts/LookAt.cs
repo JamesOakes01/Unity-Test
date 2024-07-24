@@ -6,19 +6,21 @@ public class LookAt : MonoBehaviour
 {
     private GameObject target;
     private Transform targetTransform;
+    private BasicMovement bm;
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player");
-        Destroy(this.gameObject, 1f);
+        bm = target.GetComponent<BasicMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //target = GameObject.FindGameObjectWithTag("Player");
-        //targetTransform = target.transform;
-        //targetTransform.rotation = Quaternion.Euler(0,0,0);
         transform.LookAt(target.transform);
+        if (!bm.isLookingAtObj())
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
