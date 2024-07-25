@@ -7,7 +7,7 @@ public class gun : MonoBehaviour
 {
     private float timer = 0;
     private int roundCount = 8;
-    private AudioSource audio;
+    private new AudioSource audio;
     public AudioClip gunEmptyAudio;
     public AudioClip gunReloadAudio;
     public AudioClip[] GunshotSounds;
