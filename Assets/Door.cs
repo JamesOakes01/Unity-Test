@@ -20,8 +20,8 @@ public class Door : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, endLoc, 1);
     }*/
 
-    public Transform from;
-    public Transform to;
+    private Transform from;
+    private Transform to;
     float speed = 0.01f;
     float timeCount = 0.0f;
 
@@ -31,6 +31,9 @@ public class Door : MonoBehaviour
     private void Start()
     {
         from = this.gameObject.transform;
+        to = this.gameObject.transform;
+        to.position = new Vector3(to.position.x - 1.028f, to.position.y, to.position.z + 1.044f);
+        to.rotation = Quaternion.Euler(to.rotation.x, to.rotation.y + 90, to.rotation.z);
 
         // Keep a note of the time the movement started.
         startTime = Time.time;
