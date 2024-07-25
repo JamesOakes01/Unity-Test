@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Translate(Vector3.left * bulletSpeed * Time.deltaTime);
+        Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
+        rb.AddRelativeForce(Vector3.left * bulletSpeed * Time.deltaTime);
     }
 }

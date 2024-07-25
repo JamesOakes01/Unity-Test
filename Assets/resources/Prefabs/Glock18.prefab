@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Glock18
       objectReference: {fileID: 0}
+    - target: {fileID: 9221259408600648994, guid: f3827a617303e284d9153d101bdf7b39,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4888185952150879903, guid: f3827a617303e284d9153d101bdf7b39, type: 3}
     m_RemovedGameObjects: []

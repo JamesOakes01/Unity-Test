@@ -13,10 +13,12 @@ public class item_3 : MonoBehaviour
         BasicMovement bm = player.GetComponent<BasicMovement>();
         GameObject gun = bm.GetLookingAt();
         Destroy(gun);
-        Vector3 pos = this.transform.position;
+        Vector3 pos = player.transform.position;
         pos.z += 1f;
-        GameObject gunInstance = Instantiate((GameObject)Resources.Load("Prefabs/Glock18"), pos, Quaternion.Euler(0,0,0));
+        GameObject gunInstance = Instantiate((GameObject)Resources.Load("Prefabs/Glock18"), pos, Quaternion.identity);
         gunInstance.transform.parent = player.transform;
+        gunInstance.transform.localPosition = Vector3.right;
+        gunInstance.transform.localRotation = Quaternion.Euler(0,90,0);
     }
 
     // Update is called once per frame
