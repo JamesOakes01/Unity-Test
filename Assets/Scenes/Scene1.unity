@@ -491,6 +491,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4888185952150879903, guid: f3827a617303e284d9153d101bdf7b39,
+        type: 3}
+      propertyPath: itemID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888185952150879903, guid: f3827a617303e284d9153d101bdf7b39,
+        type: 3}
+      propertyPath: itemName
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888185952150879903, guid: f3827a617303e284d9153d101bdf7b39,
+        type: 3}
+      propertyPath: itemDescription
+      value: A Glock pistol in white color
+      objectReference: {fileID: 0}
     - target: {fileID: 7471604162456061933, guid: f3827a617303e284d9153d101bdf7b39,
         type: 3}
       propertyPath: m_LocalPosition.x
