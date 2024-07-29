@@ -1,22 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(Item))]
 public class TestOnInspector : Editor
 {
-    public Item item;
     public override void OnInspectorGUI()
     {
-        GUILayout.Label("This is a Label in a Custom Editor");
-        GUILayout.RepeatButton("text");
-        string itemID = GUILayout.TextField("test");
-        item.SetItemID(int.Parse(itemID));
-        //var name1 = Item.GetItemName().ToString();
-        GUILayout.Label("Item name: " + Item.GetItemName());
-        //string names3 = GUILayout.TextField("test");
-        GUIContent content = new GUIContent(Item.GetItemName());
-        GUILayout.Box(content: content);
+        // Get the target object
+        Item item = (Item)target;
+
+        // Display label
+        GUILayout.Label("Item System: ");
+
+        // TextField for itemID
+        item.itemID = EditorGUILayout.IntField("Item ID", item.itemID);
+
+
+        item.showInWorldSpace = EditorGUILayout.Toggle("Show Item in world space ", item.showInWorldSpace);
+
+        // Display item details
+        EditorGUILayout.LabelField("Item Name:", item.itemName);
+        EditorGUILayout.LabelField("Item Description:", item.itemDescription);
+        EditorGUILayout.LabelField("Item Value:", item.itemValue.ToString());
+        
+        //item.ItemNameUIPrefab = (GameObject)EditorGUILayout.ObjectField("Item Name UI Prefab", item.ItemNameUIPrefab, typeof(GameObject), false);
+
+        // Create a button to update the item
+        if (GUILayout.Button("Load Item Data"))
+        {
+            item.ReadItemsFile(item.itemID.ToString());
+            // Ensure changes are saved and displayed in the inspector
+            EditorUtility.SetDirty(item);
+        }
     }
 }
+
