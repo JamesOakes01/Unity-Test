@@ -38,8 +38,21 @@ public class Inventory : MonoBehaviour
         {
             GameObject entry = Instantiate(InventoryEntryPrefab, content.transform);
             entry.name = itemsInInventory[i].ToString();
-            TMP_Text text = entry.transform.Find("TitleText").GetComponent<TMP_Text>();
-            text.text = ItemLookup.LookUpItemName(itemsInInventory[i]);
+
+            //Getting references
+            TMP_Text titleText = entry.transform.Find("TitleText").GetComponent<TMP_Text>();
+            TMP_Text descText = entry.transform.Find("DescriptionText").GetComponent<TMP_Text>();
+            TMP_Text valueText = entry.transform.Find("ValueText").GetComponent<TMP_Text>();
+            TMP_Text quantityText = entry.transform.Find("QuantityText").GetComponent<TMP_Text>();
+            UnityEngine.UI.Image image = entry.transform.Find("Image").GetComponent<UnityEngine.UI.Image>();
+
+            //Settings values
+            titleText.text = ItemLookup.LookUpItemName(itemsInInventory[i]);
+            descText.text = ItemLookup.LookUpDesc(itemsInInventory[i]);
+            valueText.text = ItemLookup.LookUpValue(itemsInInventory[i]).ToString();
+            quantityText.text = quantityOfInventory[i].ToString();
+            Sprite icon = Resources.Load<Sprite>("ItemImages/" + itemsInInventory[i].ToString());
+            image.sprite = icon;
         }
 
         Invoke("SetInventoryLayout", 0.01f);

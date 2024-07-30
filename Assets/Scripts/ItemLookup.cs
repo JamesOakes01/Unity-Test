@@ -69,4 +69,10 @@ public class ItemLookup : MonoBehaviour
         ReadItemsFile(itemIDToSearch.ToString());
         return itemDescription;
     }
+
+    public int LookUpValue(int itemIDToSearch)
+    {
+        ReadItemsFile(itemIDToSearch.ToString());
+        return itemValue;
+    }
 }
