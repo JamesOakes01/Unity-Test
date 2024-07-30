@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 
@@ -19,13 +20,18 @@ public class Inventory : MonoBehaviour
         LoadInventory();
         //Debug.Log(inventoryDict);
         PrintInventory();
-        DisplayInventory();
+        //DisplayInventory();
+        Debug.Log("invokign start...");
+        Invoke("DisplayInventory",0.1f); //using invoke because in start the values for preferred height are always zero before the first frame update
     }
 
+    //int counter = 0;
     // Update is called once per frame
     void Update()
     {
-        
+        //if (counter == 1)
+        //    DisplayInventory();
+        //else counter++;
     }
 
     public void LoadInventory()
@@ -35,7 +41,13 @@ public class Inventory : MonoBehaviour
 
     public void DisplayInventory()
     {
-        GameObject content = InventoryUI.transform.Find("Content").gameObject;
+        GameObject content = InventoryUI.transform.Find("Scroll View/Viewport/Content").gameObject;
+        RectTransform trans = content.GetComponent<RectTransform>();
+        VerticalLayoutGroup vert = content.GetComponent<VerticalLayoutGroup>();
+        float prefheight = vert.minHeight;
+        Debug.Log("Pref height: " + prefheight);
+        Debug.Log(trans.rect.height);
+        trans.sizeDelta = new Vector2(trans.sizeDelta.x, prefheight);
     }
 
     public void VerifyArraysMatch()

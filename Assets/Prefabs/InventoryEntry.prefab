@@ -627,6 +627,7 @@ GameObject:
   - component: {fileID: 7787494532795967336}
   - component: {fileID: 4025028586088863737}
   - component: {fileID: 1557680269974547151}
+  - component: {fileID: 3588126283563130245}
   m_Layer: 5
   m_Name: InventoryEntry
   m_TagString: Untagged
@@ -655,7 +656,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.815704, y: 119.09714}
+  m_AnchoredPosition: {x: -9.815735, y: 119.09714}
   m_SizeDelta: {x: -37.9541, y: -261.7521}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4025028586088863737
@@ -696,3 +697,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3588126283563130245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7744838371105927527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 426
+  m_MinHeight: 126
+  m_PreferredWidth: 1141.6459
+  m_PreferredHeight: 273.04788
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
