@@ -100,8 +100,15 @@ public class BasicMovement : MonoBehaviour
         {
             if (isLookingAtObj())
             {
-                int itemID = lookingAt.GetComponent<Item>().itemID;
-                Interaction(itemID);
+                try
+                {
+                    int itemID = lookingAt.GetComponent<Item>().itemID;
+                    Interaction(itemID);
+                }
+                catch
+                {
+                    //Debug.LogWarning("This is not an item");
+                }
             }
         }
     }
