@@ -4,7 +4,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 using static UnityEditor.Progress;
 using TMPro;
 
@@ -12,32 +12,78 @@ public class Inventory : MonoBehaviour
 {
     public List<int> itemsInInventory;
     public List<int> quantityOfInventory;
+    public List<GameObject> inventoryEntries;
 
     public GameObject InventoryUI;
     public GameObject InventoryEntryPrefab;
     public ItemLookup ItemLookup;
+    public bool isInventoryOpen = false;
     //Dictionary<int, int> inventoryDict = new Dictionary<int, int>();
     // Start is called before the first frame update
     void Start()
     {
-        LoadInventory();
-        PrintInventory();
-        Invoke("DisplayInventory",0.1f); //using invoke because in start the values for preferred height are always zero before the first frame update
+        //LoadInventory();
+        //PrintInventory();
+        //Invoke("DisplayInventory",0.1f); //using invoke because in start the values for preferred height are always zero before the first frame update
     }
 
-    public void LoadInventory()
+    private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!isInventoryOpen)
+            {
+                isInventoryOpen = true;
+                OpenInventory();
+            }
+            else
+            {
+                CloseInventory();
+            }
+        }
+    }
+
+    public void OpenInventory()
+    {
+        isInventoryOpen = true;
+        Cursor.lockState = CursorLockMode.None;
         ReadInventoryFile();
+        
+        Invoke("DisplayInventory", 0.1f);
+        Invoke("PauseTime", 0.1f);
+        
+    }
+
+    public void PauseTime()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void CloseInventory()
+    {
+        isInventoryOpen = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        InventoryUI.SetActive(false);
+
+        //destroy the old inventory entries
+        for (int i = 0; i < inventoryEntries.Count; i++)
+        {
+            Destroy(inventoryEntries[i]);
+        }
+
+        Time.timeScale = 1f;
     }
 
     public void DisplayInventory()
     {
+        InventoryUI.SetActive(true);
         GameObject content = InventoryUI.transform.Find("Scroll View/Viewport/Content").gameObject;
 
         for (int i = 0; i < itemsInInventory.Count; i++)
         {
             GameObject entry = Instantiate(InventoryEntryPrefab, content.transform);
-            entry.name = itemsInInventory[i].ToString();
+            entry.name = "item" + itemsInInventory[i].ToString();
+            inventoryEntries.Add(entry);
 
             //Getting references
             TMP_Text titleText = entry.transform.Find("TitleText").GetComponent<TMP_Text>();
@@ -90,6 +136,8 @@ public class Inventory : MonoBehaviour
 
     public void ReadInventoryFile()
     {
+        itemsInInventory.Clear();
+        quantityOfInventory.Clear();
         StreamReader strReader = new StreamReader("C:\\Users\\James\\Documents\\GitHub\\Unity-Test\\TestProject\\Assets\\inventory.csv");
         string dataString;
 

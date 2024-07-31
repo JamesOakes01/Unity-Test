@@ -19,7 +19,7 @@ public class BasicMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class BasicMovement : MonoBehaviour
                 rb.AddRelativeForce(Vector3.right * physicsSpeed * Time.deltaTime);
             }
 
-            Cursor.lockState = CursorLockMode.Locked;
+            
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * lookSpeed * Time.deltaTime);
         }
         else
@@ -66,7 +66,7 @@ public class BasicMovement : MonoBehaviour
                 transform.Translate(Vector3.right * speed * Time.deltaTime);
             }
 
-            Cursor.lockState = CursorLockMode.Locked;
+            
             transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * lookSpeed * Time.deltaTime);
         }
     }
